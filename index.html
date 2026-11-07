@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reproductive Anatomy Learning Study</title>
+<style>
+:root{--bg:#e4e2dc;--panel:#f2f0ea;--field:#faf9f6;--soft:#e8e5de;--ink:#1b1b1a;--mute:#6d6a63;--line:#cbc8bf;--accent:#e4570f;--onaccent:#fff;--ok:#4c8a58;--shadow:0 24px 40px -30px rgba(0,0,0,.4);color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.unit{max-width:900px;margin:0 auto;padding:clamp(16px,4vw,44px) 16px 24px}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:11px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.dial{width:24px;height:24px;border-radius:50%;border:2px solid var(--ink);position:relative;flex:none}
+.dial:after{content:"";position:absolute;left:50%;top:3px;width:2px;height:7px;margin-left:-1px;background:var(--accent)}
+.count,.meta{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.ticks{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;margin-bottom:9px}
+.ticks i{height:5px;background:var(--line);border-radius:1px}.ticks i.on{background:var(--ink)}.ticks i.now{background:var(--accent)}
+.stagebar{display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:clamp(22px,5vw,44px);box-shadow:var(--shadow);min-height:300px}
+.view{animation:in .28s ease both}@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.eyebrow:before{content:"";width:7px;height:7px;background:var(--accent);flex:none}
+h2{font-size:clamp(24px,4vw,30px);line-height:1.18;letter-spacing:-.025em;font-weight:600;margin:0 0 14px}
+h2.q{font-size:clamp(20px,3.2vw,24px);line-height:1.3;margin:6px 0 22px}
+h3{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:28px 0 10px;font-weight:700}
+p{margin:0 0 14px}.lead{font-size:17px;color:var(--ink)}.fine{font-size:12px;color:var(--mute);line-height:1.5}
+.sec{font-size:13px;color:var(--mute);margin-top:4px}
+.steps{list-style:none;counter-reset:s;margin:22px 0;padding:0;border-top:1px solid var(--line)}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}
+.steps li:before{content:counter(s,decimal-leading-zero);font-size:12px;color:var(--accent);font-weight:700;padding-top:2px;font-variant-numeric:tabular-nums}
+.field{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:22px 0 8px}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:14px;font:inherit;font-size:16px;background:var(--field);color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s}
+input[type=text]:focus,input[type=email]:focus,input[type=tel]:focus,input[type=url]:focus,input[type=number]:focus,textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+textarea{min-height:140px;resize:vertical;line-height:1.5}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg label,.opt,.key,.check{position:relative;cursor:pointer}
+input[type=radio],input[type=checkbox]{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;text-align:center;padding:15px;border:1px solid var(--line);border-radius:8px;background:var(--field);font-weight:600;transition:all .15s}
+.seg input:checked+span{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.seg label:hover span{border-color:var(--ink)}
+.assign{margin-top:18px;padding:14px 16px;border-left:3px solid var(--line);background:var(--soft);font-size:14px;border-radius:0 8px 8px 0}
+.assign b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}
+.notice{border-left:3px solid var(--ink);background:var(--soft);padding:15px 17px;margin:18px 0;border-radius:0 8px 8px 0;font-size:14px;line-height:1.55}
+.notice b{font-weight:700}.notice.warn{border-color:var(--accent)}
+.check{display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:start;padding:16px;border:1px solid var(--line);border-radius:8px;background:var(--field);margin:20px 0;font-size:15px}
+.check i{width:22px;height:22px;border:1.5px solid var(--ink);border-radius:5px;display:grid;place-items:center;margin-top:1px}
+.check i:after{content:"";width:10px;height:6px;border:solid var(--onaccent);border-width:0 0 2px 2px;transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.check input:checked+i{background:var(--accent);border-color:var(--accent)}.check input:checked+i:after{opacity:1}
+.qhead{display:flex;justify-content:space-between;align-items:center}.qhead .eyebrow{margin:0}
+.qdots{display:flex;gap:4px;margin:14px 0 22px}.qdots i{flex:1;height:3px;background:var(--line)}.qdots i.on{background:var(--ink)}.qdots i.now{background:var(--accent)}
+.opts{display:grid;gap:10px}
+.opt{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;padding:15px 16px;border:1px solid var(--line);border-radius:8px;background:var(--field);transition:border-color .15s,background .15s}
+.opt b{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;transition:all .15s}
+.opt span{font-size:15px;line-height:1.5;padding-top:2px}.opt:hover{border-color:var(--ink)}
+.opt:has(input:checked){border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt input:checked~b,.key input:checked~b{background:var(--accent);border-color:var(--accent);color:var(--onaccent)}
+:is(.opt,.key,.seg label,.check):has(input:focus-visible){outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px;border-radius:8px}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.key{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;padding:14px 4px 12px;border:1px solid var(--line);border-radius:8px;background:var(--field);transition:border-color .15s}
+.key:hover{border-color:var(--ink)}.key:has(input:checked){border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.key b{width:34px;height:34px;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:14px;transition:all .15s}
+.key span{font-size:11px;line-height:1.3;color:var(--mute);min-height:29px}
+.actions{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-top:30px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{border:1px solid transparent;border-radius:8px;padding:0 22px;height:48px;font:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:background .15s,transform .1s,opacity .15s;white-space:nowrap}
+.btn:active{transform:translateY(1px)}.btn:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
+.primary{background:var(--accent);color:var(--onaccent)}.primary:hover{filter:brightness(.93)}
+.ghost{background:transparent;border-color:var(--line);color:var(--ink)}.ghost:hover{border-color:var(--ink)}
+.soft{background:var(--ink);color:var(--panel)}.soft:hover{opacity:.88}
+.btn:disabled{opacity:.35;cursor:not-allowed;filter:none}
+.figs{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:8px;margin:20px 0;overflow:hidden}
+.fig{padding:18px 20px;background:var(--field)}.fig+.fig{border-left:1px solid var(--line)}
+.fig b{display:block;font-size:34px;line-height:1.1;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.fig span{font-size:12px;color:var(--mute)}
+.spec{display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.spec:first-of-type{border-top:1px solid var(--line)}.spec .k{font-weight:600;font-size:15px}.spec .rule{font-size:12px;color:var(--mute)}
+.spec .v{font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.st{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;min-width:74px}
+.lamp{width:10px;height:10px;border-radius:50%;background:var(--line);flex:none}.lamp.on{background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 25%,transparent)}
+.verdict{display:flex;gap:14px;align-items:flex-start;padding:18px;border:1px solid var(--line);border-radius:8px;margin:20px 0;background:var(--field)}
+.verdict .lamp{margin-top:7px}
+.key-instruction{font-size:19px;line-height:1.4;font-weight:600;letter-spacing:-.015em;padding:20px 0;margin:18px 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.topics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.topic{display:grid;grid-template-columns:30px 1fr;padding:14px;border:1px solid var(--line);border-radius:8px;background:var(--field);font-size:14px;font-weight:600}
+.topic i{font-style:normal;font-size:11px;color:var(--accent);padding-top:2px}
+ol.how{margin:0;padding-left:20px;font-size:15px}ol.how li{padding:4px 0 4px 6px}ol.how li::marker{color:var(--accent);font-weight:700}
+.timerbox{display:flex;align-items:center;gap:24px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--field);margin:20px 0}
+.ring{position:relative;width:132px;height:132px;flex:none}.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:6}.ring .tr{stroke:var(--line)}.ring .pr{stroke:var(--accent);stroke-linecap:butt;transition:stroke-dashoffset .9s linear}
+.timer{position:absolute;inset:0;display:grid;place-items:center;font-size:28px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.tcol{display:grid;gap:10px;flex:1}.tcol small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:700}.trow{display:flex;gap:10px}
+.sheet ul,.sheet ol{margin:0 0 14px;padding-left:20px}.sheet li{padding:2px 0}.sheet h3{margin-top:24px}mark{background:#ffe9a8;color:inherit;padding:0 3px;border-radius:3px}
+.seg.s3{grid-template-columns:repeat(3,1fr)}.seg.s3 span{padding:15px 6px;font-size:14px}
+.screen{border:1px solid var(--line);background:var(--field);border-radius:8px;padding:6px 18px 18px;margin:22px 0}.screen p.q2{margin:18px 0 8px;font-weight:600}
+.notice .btn{white-space:normal;height:auto;min-height:44px;padding:10px 14px;max-width:100%}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--mute);text-decoration:underline;cursor:pointer}.linkbtn:hover{color:var(--ink)}
+.hint{font-size:12px;color:var(--mute);margin-top:6px;line-height:1.45}.hint.bad{color:var(--accent);font-weight:600}
+.shot{margin:20px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--field)}
+.shot img{display:block;width:100%;height:auto}.shot figcaption{padding:11px 14px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);line-height:1.5}
+.big-submit{width:100%;height:64px;font-size:17px;margin:22px 0 10px;letter-spacing:.02em}
+.big-export{width:100%;height:64px;font-size:17px;margin:6px 0 10px;display:flex;align-items:center;justify-content:center;gap:12px;letter-spacing:.02em;border-radius:8px}
+.big-export:before{content:"";width:12px;height:12px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-2px,-2px)}
+.warn-light{border-left:3px solid var(--accent)}
+.crit{border:2px solid var(--ink);border-radius:10px;margin:22px 0;background:var(--field);overflow:hidden}
+.crit-h{display:flex;align-items:center;gap:10px;background:var(--accent);color:var(--onaccent);padding:11px 16px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.crit-h i{width:8px;height:8px;border-radius:50%;background:var(--onaccent);animation:pulse 1.6s ease-in-out infinite}@keyframes pulse{50%{opacity:.25}}
+.crit-t{padding:16px 16px 0;font-size:18px;font-weight:600;letter-spacing:-.015em;line-height:1.35}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);position:relative;padding:22px 10px 6px}
+.flow:before{content:"";position:absolute;top:49px;left:12.5%;right:12.5%;height:2px;background:var(--ink)}
+.fs{position:relative;text-align:center;padding:0 8px 16px}
+.fc{width:56px;height:56px;border-radius:50%;background:var(--panel);border:2px solid var(--ink);display:grid;place-items:center;margin:0 auto 12px;position:relative}
+.fc svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fn{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--onaccent);font-size:11px;font-weight:700;display:grid;place-items:center}
+.fs b{display:block;font-size:14px;margin-bottom:3px}.fs span{font-size:12px;color:var(--mute);line-height:1.4;display:block}.fs .fn{display:grid;font-size:11px;font-weight:700;color:var(--onaccent);line-height:1}
+.nots{display:flex;flex-wrap:wrap;gap:6px 20px;padding:12px 16px;border-top:1px solid var(--line);background:var(--soft);font-size:12px;font-weight:600}
+.nots em{font-style:normal;color:var(--accent);margin-right:6px;font-weight:700}
+@media(max-width:600px){.flow{grid-template-columns:1fr;padding:18px 16px 2px}.flow:before{top:46px;bottom:64px;left:43px;right:auto;width:2px;height:auto}.fs{display:grid;grid-template-columns:56px 1fr;gap:14px;text-align:left;padding:0 0 18px;align-items:center}.fc{margin:0}}
+footer{max-width:720px;margin:0 auto;padding:0 16px 28px;color:var(--mute);font-size:11px;line-height:1.5}
+@media(max-width:600px){.topics{grid-template-columns:1fr}.timerbox{flex-direction:column;align-items:stretch}.ring{margin:0 auto}.scale{gap:5px}.key span{font-size:10px}.spec{grid-template-columns:1fr auto}.st{grid-column:1/-1;margin-top:-6px}.actions .btn{flex:1;padding:0 12px}.card{border-radius:8px}}
+@media(min-width:900px){
+body{font-size:18px}.unit{padding-top:40px}.card{padding:52px 60px;min-height:380px}
+h2{font-size:36px}h2.q{font-size:28px}h3{font-size:13px}.lead{font-size:21px}.fine{font-size:14px}.hint{font-size:13px}
+.eyebrow,.count,.meta,.stagebar{font-size:13px}.brand{font-size:12px}
+.steps li{font-size:17px;grid-template-columns:48px 1fr}.field{font-size:13px}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],textarea{font-size:18px;padding:16px}
+.btn{height:54px;font-size:17px;padding:0 28px}.opt span{font-size:17px}.check{font-size:17px}.notice{font-size:16px}
+.seg span{padding:17px;font-size:17px}.seg.s3 span{font-size:16px;padding:17px 8px}
+.sheet,.view>p:not(.lead){max-width:72ch}.sheet li,.sheet p{font-size:17px}
+.crit-t{font-size:21px}.fs b{font-size:16px}.fs span{font-size:14px}.nots{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<div class="unit">
+<div class="bar"><div class="brand"><span class="dial"></span>Participant activity</div><span class="meta" id="stepLabel"></span></div>
+<div class="ticks" id="ticks" aria-hidden="true"></div>
+<div class="stagebar"><span id="stageLabel"></span></div>
+<section class="card" id="app" aria-live="polite"></section>
+</div>
+<footer>Your responses are kept in this browser while you take part. They are sent to the research team only when you press Submit on the last page. You do not need to download or email anything.</footer>
+<script>
+/* ============ CONFIGURATION: edit this block ============ */
+const BACKEND='google';   /* 'google' = Google Sheet via Apps Script (free, your own Drive)   |   'supabase' = Supabase database */
+const GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbzycGluA6YgK4YhgX2FA93s9E9VBURsEoa7NKAxBUZnoK8fKj3uEA7FNYavS9Y0T_qZ/exec';   /* only for BACKEND 'google' */
+const SUPABASE_URL='https://YOUR-PROJECT-REF.supabase.co';   /* only for BACKEND 'supabase' */
+const SUPABASE_KEY='YOUR-PUBLISHABLE-KEY';                    /* only for BACKEND 'supabase': the publishable key, NEVER the secret key */
+/* Text shown in the participant information sheet. Anything starting with [ADD is highlighted yellow until you replace it. */
+const STUDY={
+researcher:'Jayanth Nune',
+affiliation:'conducting research at EPFL',
+supervisor:'',   /* optional, e.g. 'Supervised by Dr Jane Doe' */
+contact:'jayanth.nune@epfl.ch',
+requirements:'to be 18 or over',
+duration:'about 30 to 40 minutes in total (the learning activity itself is 10 to 15 minutes)',
+retention:'until 1 January 2028',
+ethics:''   /* optional, e.g. 'This study has been approved by ... (reference ...)' */
+};
+/* ========================================================== */
+const isPh=v=>/^\[ADD/.test(v||'');
+const RESEARCHER_CONTACT=isPh(STUDY.contact)?'':STUDY.contact;
+const STORAGE=BACKEND==='google'?'a private Google Sheet in the research team\u2019s Google account':'a private online database (Supabase) controlled by the research team';
+const CONSENT_VERSION='2026-11-07';
+const CONSENT=[
+/* verbatim */ 'I confirm that I have read and understood the participant information sheet for this project, including its purpose, procedure, possible benefits, risks and data-protection arrangements. I have had the opportunity to ask questions and have received satisfactory answers.',
+/* adapted: softer wording */ 'I understand that participation is voluntary. I may refuse to participate or withdraw at any time, without giving a reason, and this will not affect me in any way.',
+/* adapted: now also lists contact details + chat link, and automatic submission */ 'I understand that the study asks me to provide a participant name or label, my age, whether ChatGPT is one of the AI tools I use most, optionally my contact email address and WhatsApp number, a gender selection, answers to knowledge questions, confidence ratings, written reflections and a link to my shared ChatGPT conversation. I understand that these responses will be sent to the research team\u2019s online database when I submit them at the end.',
+/* adapted: replaces the PDF export / local storage statement */ 'I understand that the study webpage keeps my responses in my browser while I take part and sends them to the research team when I press Submit at the end, so I do not need to download or send a report myself (although I may choose to email a downloaded copy of my answers to the research team instead).',
+/* adapted: the team now sees the chat the participant chooses to share */ 'I understand that the research team does not access my ChatGPT account. The team will only see the conversation that I choose to share using a share link, and anyone with that link can view the shared conversation. My use of ChatGPT is subject to the provider\u2019s own terms, privacy policy and account settings.',
+/* verbatim */ 'I understand that my data will be handled using the protection measures described in the information sheet and that identifiable information will not be included in research publications.',
+/* new: covers the contact details and the follow-up question */ 'I understand that my contact details will be used only by the research team, and that at the end I will be asked whether I am willing to be contacted later with follow-up questions.'
+];
+const bank={
+female:{
+screen:[
+['Which description best captures how the external and internal parts of the reproductive system relate to one another?',[
+'The vulva refers to external genital structures, while the vagina is an internal muscular canal.',
+'The vagina refers to all external genital structures, while the vulva is the canal leading to the uterus.',
+'The vulva and vagina are two names for the same internal canal, used in different medical contexts.',
+'The vulva is the internal reproductive organ that connects the ovaries directly to the uterus.'
+],0],
+['A person is tracing the route an egg may take after it is released. Which sequence is most anatomically accurate?',[
+'Ovary → fallopian tube → uterus; fertilisation may occur in the fallopian tube.',
+'Uterus → fallopian tube → ovary; fertilisation normally occurs inside the uterus.',
+'Ovary → cervix → vagina; fertilisation normally occurs in the cervix.',
+'Fallopian tube → ovary → uterus; fertilisation normally occurs in the ovary.'
+],0],
+['Which statement best explains what menstruation represents within a typical menstrual cycle?',[
+'The uterine lining is shed when pregnancy has not occurred in that cycle.',
+'An unfertilised egg is expelled while the uterine lining remains unchanged.',
+'The ovaries release the uterine lining so that a new egg can begin developing.',
+'The cervix sheds its surface tissue as the body prepares to release an egg.'
+],0],
+['Which description best explains why vaginal secretions can vary over the course of a cycle?',[
+'Secretions can change with hormonal fluctuations and may help maintain vaginal conditions and support sperm movement.',
+'Secretions are produced only during menstruation and otherwise indicate an interruption in the cycle.',
+'Secretions are released by the ovaries directly into the vagina and remain compositionally constant.',
+'Secretions are primarily urine filtered through the vaginal wall, so changes reflect hydration alone.'
+],0],
+['Which pairing of structure and function is most accurate?',[
+'Ovaries — release eggs and produce hormones involved in reproductive function.',
+'Fallopian tubes — produce the uterine lining and regulate menstrual bleeding.',
+'Cervix — produce eggs and release them into the abdominal cavity.',
+'Uterus — produce sperm cells and transport them towards the ovaries.'
+],0],
+['A person says that a menstrual period and ovulation are the same event. Which response best corrects this?',[
+'Ovulation is the release of an egg; menstruation is the shedding of the uterine lining when pregnancy has not occurred.',
+'Ovulation is the shedding of the uterine lining; menstruation is the release of an egg from an ovary.',
+'Ovulation and menstruation are two names for the same event, but occur at different cycle lengths.',
+'Ovulation occurs only after menstruation has permanently stopped, while menstruation begins at puberty.'
+],0]
+],
+pre:[
+['A person uses “vagina” to refer to the entire visible genital area. Which clarification is most accurate?',[
+'The vulva names the external genital structures; the vagina is the internal muscular canal.',
+'The vagina names the external genital structures; the vulva is the internal muscular canal.',
+'The vulva is the opening of the uterus; the vagina is the tissue surrounding the ovaries.',
+'Both terms refer to the same structure, but one is informal and the other clinical.'
+],0],
+['If an egg is released from an ovary, where would it normally travel next?',[
+'Into a fallopian tube, which provides a route towards the uterus.',
+'Directly through the cervix and into the vagina.',
+'Into the uterine lining, where it is produced and stored.',
+'Into the bladder, before moving through the urethra.'
+],0],
+['What is the main role of the uterine lining during a menstrual cycle?',[
+'It thickens in preparation for possible implantation and is shed if pregnancy does not occur.',
+'It produces and releases an egg during the middle of each cycle.',
+'It transports eggs from the ovaries to the fallopian tubes.',
+'It forms a permanent barrier that prevents sperm from entering the uterus.'
+],0],
+['A person notices that cervical mucus becomes clearer and stretchier around the time of ovulation. Which explanation is most appropriate?',[
+'Hormonal changes can alter cervical mucus, and this type can support sperm movement.',
+'The change means the uterine lining has already begun to shed.',
+'The mucus is an egg that has dissolved before reaching the uterus.',
+'The change is caused by urine passing through the cervix during ovulation.'
+],0],
+['Which statement about the cervix is accurate?',[
+'It is the lower, narrow part of the uterus that opens into the vagina.',
+'It is the external fold of tissue that surrounds the vaginal and urethral openings.',
+'It is the structure that releases eggs into the fallopian tubes.',
+'It is the muscular canal connecting the uterus directly to the outside of the body.'
+],0],
+['A fertilised egg normally reaches the uterus after fertilisation. Where does fertilisation most commonly take place?',[
+'In a fallopian tube.',
+'In the vagina.',
+'In the cervix.',
+'In the uterine lining.'
+],0]
+],
+post:[
+['A diagram labels the labia, clitoris and vaginal opening together. What collective term describes these external structures?',[
+'The vulva.',
+'The vagina.',
+'The cervix.',
+'The uterus.'
+],0],
+['A released egg is not fertilised. Which description best represents what generally happens later in that cycle?',[
+'Hormone levels fall and the uterine lining is shed as menstrual flow.',
+'The egg travels back into the ovary and becomes the next uterine lining.',
+'The cervix releases a new egg and the uterine lining remains unchanged.',
+'The fallopian tube becomes the menstrual lining and exits through the urethra.'
+],0],
+['Which statement best distinguishes the vagina from the uterus?',[
+'The vagina is a muscular canal connecting the cervix to the outside; the uterus is an organ where a pregnancy can develop.',
+'The vagina is where eggs mature; the uterus is the external genital area.',
+'The vagina produces reproductive hormones; the uterus transports urine.',
+'The vagina is the lower part of the ovary; the uterus is the tube connecting both ovaries.'
+],0],
+['A person asks why vaginal discharge may change in appearance during the cycle. Which answer is most accurate?',[
+'Normal secretions can vary with hormonal changes, including becoming more stretchy around ovulation.',
+'Any change in discharge means menstruation has started, regardless of timing.',
+'Discharge is always produced by the bladder, so cycle hormones do not affect it.',
+'Discharge should remain identical throughout the cycle; variation always indicates disease.'
+],0],
+['Which sequence correctly describes a typical route relevant to conception?',[
+'Sperm enters through the vagina; it may pass through the cervix and uterus towards a fallopian tube.',
+'An egg enters through the vagina; it passes through the cervix and travels towards an ovary.',
+'Sperm enters through the urethra; it passes through the bladder and reaches the uterus.',
+'An egg is released by the uterus; it travels through the cervix and into a fallopian tube.'
+],0],
+['Which statement best describes the relationship between ovulation and menstruation?',[
+'Ovulation is egg release; menstruation is the shedding of the uterine lining when pregnancy has not occurred.',
+'Ovulation is the start of menstrual bleeding; menstruation is the release of an egg.',
+'Ovulation occurs only during pregnancy; menstruation prepares the ovaries to release sperm.',
+'They are unrelated processes controlled by entirely separate reproductive systems.'
+],0]
+]
+},
+male:{
+screen:[
+['Which description best distinguishes the penis from the scrotum?',[
+'The penis is an external organ containing the urethra; the scrotum is a skin pouch that holds the testes.',
+'The penis is the pouch that holds the testes; the scrotum is the external organ through which semen exits.',
+'The penis produces sperm; the scrotum stores semen until ejaculation.',
+'The penis and scrotum are two names for the same external reproductive structure.'
+],0],
+['Which sequence best represents the route sperm take during maturation and ejaculation?',[
+'Testes → epididymis → vas deferens → urethra → outside the body.',
+'Epididymis → testes → urethra → vas deferens → outside the body.',
+'Testes → prostate → bladder → epididymis → outside the body.',
+'Seminal vesicles → testes → scrotum → urethra → outside the body.'
+],0],
+['Which statement most accurately describes semen?',[
+'It is a fluid containing sperm and secretions from reproductive glands that help transport sperm.',
+'It is another name for sperm cells alone, without any additional fluid.',
+'It is a clear fluid released only before ejaculation to lubricate the urethra.',
+'It is urine that has passed through the reproductive glands before leaving the body.'
+],0],
+['What is the main distinction between pre-ejaculate and semen?',[
+'Pre-ejaculate is typically released before ejaculation and helps lubricate the urethra; semen is the ejaculatory fluid that typically contains sperm.',
+'Pre-ejaculate is sperm stored in the testes; semen is the fluid produced only by the bladder.',
+'Pre-ejaculate and semen are identical fluids, but are named according to their volume.',
+'Pre-ejaculate is released after ejaculation, while semen is released before sexual arousal.'
+],0],
+['Which pairing of structure and function is most accurate?',[
+'Testes — produce sperm and testosterone.',
+'Scrotum — produce sperm and seminal fluid.',
+'Prostate — produce sperm cells and store them until ejaculation.',
+'Penis — mature sperm and store them before ejaculation.'
+],0],
+['Why are the testes located in the scrotum outside the main body cavity?',[
+'Sperm production works best at a temperature slightly below core body temperature.',
+'The scrotum produces hormones that would otherwise overheat the testes.',
+'Sperm can only mature when exposed directly to outside air.',
+'The testes need to remain colder than the surrounding environment at all times.'
+],0]
+],
+pre:[
+['A person describes the scrotum as the organ that releases semen. Which correction is most accurate?',[
+'The scrotum is a pouch containing the testes; semen exits through the urethra in the penis.',
+'The scrotum is the tube that carries semen from the bladder; the penis stores it.',
+'The scrotum produces semen; the penis produces sperm cells.',
+'The scrotum and urethra are the same structure, located in different parts of the body.'
+],0],
+['Where are sperm cells produced, and where do they mature?',[
+'Sperm are produced in the testes and mature in the epididymis.',
+'Sperm are produced in the prostate and mature in the seminal vesicles.',
+'Sperm are produced in the scrotum and mature in the urethra.',
+'Sperm are produced in the vas deferens and mature in the bladder.'
+],0],
+['Which description best explains what makes up semen?',[
+'Sperm combine with fluids contributed mainly by the seminal vesicles and prostate.',
+'Sperm combine with urine produced by the bladder and stored in the scrotum.',
+'Semen is made entirely by the testes, with no contribution from other glands.',
+'Semen is pre-ejaculate that has remained in the urethra for a longer period.'
+],0],
+['What is a typical function of pre-ejaculate?',[
+'It helps lubricate the urethra and may help neutralise residual acidity before ejaculation.',
+'It transports mature sperm from the epididymis and forms most of the semen volume.',
+'It is released by the testes to regulate their temperature during arousal.',
+'It is urine released in small quantities to clear the bladder before ejaculation.'
+],0],
+['Which structure carries mature sperm away from the epididymis towards the ejaculatory ducts?',[
+'The vas deferens.',
+'The urethra.',
+'The scrotal wall.',
+'The seminal vesicle.'
+],0],
+['Which statement about the urethra is accurate in people with a typical male reproductive anatomy?',[
+'It is a passage through which urine and semen leave the body, at different times.',
+'It is a tube that carries sperm from the testes to the epididymis.',
+'It is a gland that produces most of the fluid in semen.',
+'It is a pouch that contains the testes and regulates their temperature.'
+],0]
+],
+post:[
+['A person is identifying the external pouch that contains the testes. Which structure are they describing?',[
+'The scrotum.',
+'The epididymis.',
+'The prostate.',
+'The vas deferens.'
+],0],
+['Sperm have been produced in the testes. Which structure is involved in their maturation and storage before ejaculation?',[
+'The epididymis.',
+'The seminal vesicle.',
+'The urethra.',
+'The prostate.'
+],0],
+['Which description best explains why semen is not simply another word for sperm?',[
+'Semen includes sperm together with fluids from glands such as the seminal vesicles and prostate.',
+'Semen is produced in the bladder, whereas sperm are produced in the prostate.',
+'Semen refers only to sperm after they have left the body, without any accompanying fluid.',
+'Semen is the fluid released before ejaculation, while sperm are released only afterwards.'
+],0],
+['A small amount of clear fluid appears at the tip of the penis before ejaculation. Which interpretation is most accurate?',[
+'It may be pre-ejaculate, a fluid released before ejaculation that lubricates the urethra.',
+'It must be semen because all fluid from the penis contains the same components.',
+'It is urine stored in the epididymis and released during sexual arousal.',
+'It is sperm produced by the prostate before it enters the testes.'
+],0],
+['During ejaculation, which route does sperm generally follow after leaving the epididymis?',[
+'Vas deferens → ejaculatory duct → urethra.',
+'Urethra → vas deferens → seminal vesicle.',
+'Prostate → epididymis → scrotum.',
+'Seminal vesicle → bladder → urethra.'
+],0],
+['Which statement best describes the relationship between the testes and scrotum?',[
+'The testes produce sperm and testosterone; the scrotum contains them and helps regulate their temperature.',
+'The scrotum produces sperm; the testes mainly protect the urethra.',
+'The testes produce semen; the scrotum stores it until ejaculation.',
+'The testes and scrotum are two connected glands that both produce pre-ejaculate.'
+],0]
+]
+}
+};
+const app=document.getElementById('app');
+const stages=['Welcome','Information','Consent','Participant details','Pre-test','Eligibility','Learning activity','Share chat link','Post-test','Reflection','Finish'];
+const confidenceItems=['I am familiar with the basic anatomy of this reproductive system.','I understand the fundamental biological processes associated with it.','I feel confident in my existing knowledge of this subject.'];
+let stage=0,data={},pathway='',timerInt=null,secondsLeft=900,dirty=false,qi=-1,Q=null;
+const $=id=>document.getElementById(id);
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function save(){try{localStorage.setItem('reproStudyDraft',JSON.stringify({stage,data,pathway,secondsLeft}));}catch(e){}}
+function setStage(n){stage=n;qi=-1;dirty=true;save();render();window.scrollTo(0,0);}
+const view=h=>{app.innerHTML=`<div class="view">${h}</div>`;};
+const acts=(back,label,fn,dis)=>`<div class="actions">${back?`<button class="btn ghost" onclick="${back}">← Back</button>`:'<span></span>'}<button class="btn primary" id="next" onclick="${fn}" ${dis?'disabled':''}>${label} →</button></div>`;
+function render(){clearInterval(timerInt);timerInt=null;
+$('stageLabel').textContent=stages[stage]||'Activity';
+$('stepLabel').textContent=`${String(stage+1).padStart(2,'0')} / ${String(stages.length).padStart(2,'0')}`;
+$('ticks').innerHTML=stages.map((_,i)=>`<i class="${i<stage?'on':i===stage?'now':''}"></i>`).join('');
+[welcome,info,consent,setup,pretest,eligibility,exploration,sharechat,posttest,reflection,complete][stage]();}
+
+function welcome(){view(`<div class="eyebrow">Welcome</div><h2>Reproductive Anatomy and Biological Understanding</h2><p class="lead">A short independent learning activity about the human reproductive system.</p><p>Thank you for taking part. This activity is designed to understand your current knowledge of a reproductive system and how that understanding changes after a short independent learning activity.</p><div class="screen"><h3 style="margin-top:14px">Quick check before you start</h3><p class="q2" style="margin-top:6px">How old are you?</p><input id="sage" type="number" inputmode="numeric" min="0" max="99" placeholder="Age in years" value="${esc(data.age||'')}"><div class="hint" id="agehint">You need to be 18 or over to take part.</div><p class="q2" id="cgl">Is ChatGPT one of the AI tools you use most often?</p><div class="seg" role="radiogroup" aria-labelledby="cgl">${[['yes','Yes'],['no','No']].map(([v,t])=>`<label><input type="radio" name="cg" value="${v}" ${data.chatgptPrimary===v?'checked':''}><span>${t}</span></label>`).join('')}</div><div class="hint" id="cghint"></div></div><h3>What you will do</h3><ol class="steps"><li>Answer the two quick questions above.</li><li>Read the information sheet and give your consent.</li><li>Enter a name or label, select your gender and, if you wish, add contact details.</li><li>Complete a short pre-test about a reproductive system.</li><li>If you meet the participation criteria, explore the topic using your personal ChatGPT account for 10–15 minutes.</li><li>Share a link to your ChatGPT chat with the research team.</li><li>Complete a post-test and a short reflection.</li><li>Press Submit on the last page. There is nothing to download or email.</li></ol><p class="fine">The activity is educational and is not medical advice. You may stop at any time. Some questions concern reproductive anatomy and sexual biology.</p>${acts('','Begin','saveScreen()',true)}`);
+const chk=()=>{const raw=$('sage').value,a=parseInt(raw,10),cg=document.querySelector('input[name=cg]:checked'),young=raw!==''&&a<18;
+$('agehint').textContent=young?'This study is for adults aged 18 or over. Thank you for your interest.':'You need to be 18 or over to take part.';$('agehint').className='hint'+(young?' bad':'');
+$('cghint').textContent=cg&&cg.value==='no'?'This study is designed for people who use ChatGPT regularly, and you will need a ChatGPT account for the activity. You are welcome to continue if you have one.':'';
+$('next').disabled=!(a>=18&&a<=99&&cg);};
+$('sage').oninput=chk;app.querySelectorAll('input[name=cg]').forEach(e=>e.onchange=chk);chk();}
+function saveScreen(){const a=parseInt($('sage').value,10),cg=document.querySelector('input[name=cg]:checked');if(!(a>=18&&a<=99)||!cg)return;data.age=a;data.chatgptPrimary=cg.value;setStage(1);}
+
+const f=v=>isPh(v)?`<mark>${esc(v)}</mark>`:esc(v);
+function infoBody(){return `<h3>Who is running this study?</h3><p>${f(STUDY.researcher)}, ${f(STUDY.affiliation)}.${STUDY.supervisor?' '+esc(STUDY.supervisor)+'.':''} You can contact the research team at ${f(STUDY.contact)}.${STUDY.ethics?' '+esc(STUDY.ethics):''}</p>
+<h3>What is the study about?</h3><p>This study looks at how people learn about a sensitive topic, the human reproductive system, by exploring it with an AI chatbot (ChatGPT). We compare what people know before and after a short independent learning activity, and we ask how comfortable people felt asking questions.</p>
+<h3>Do I have to take part?</h3><p>No. Taking part is voluntary. To take part you need ${f(STUDY.requirements)}. You also need a personal ChatGPT account and a device with a web browser. We are mainly looking for people aged 20 to 30 who use ChatGPT regularly, but this is not a strict requirement. You can stop at any time, without giving a reason, and it will not affect you in any way. If you close this page before pressing Submit on the last page, nothing is sent to the research team.</p>
+<h3>What will I be asked to do?</h3><p>The whole activity takes ${esc(STUDY.duration)}.</p><ol><li>Tell us your age and whether ChatGPT is one of the AI tools you use most, then read this sheet and give your consent.</li><li>Enter a name or label, select your gender and, if you wish, add an email address and WhatsApp number.</li><li>Answer a short pre-test: six knowledge questions and three confidence statements. Please use only what you already know. Based on your answers you may be asked to continue or may finish early. Both outcomes are normal.</li><li>If you continue, spend about 10 to 15 minutes exploring the topic in a regular chat on your own ChatGPT account, using a new browser tab. Please do not use Temporary Chat or other AI tools, and do not type personal details about yourself into the chat.</li><li>Share a link to that ChatGPT chat with the research team.</li><li>Answer a six-question post-test and a short reflection about your experience.</li><li>Say whether you are willing to be contacted later with follow-up questions, then press Submit.</li></ol>
+<h3>What are the possible benefits and risks?</h3><p>There is no direct benefit to you, but you may learn something and you will help our research.</p><p>Some questions and topics concern reproductive anatomy and sexual biology, and some people may find this uncomfortable. You can skip the rest of the activity at any time by closing the page. The activity is educational and is not medical advice. ChatGPT can make mistakes, so if you have a health concern please speak to a doctor or another qualified professional. The research team will read the chat that you share, so please check that you are comfortable with that.</p>
+<h3>What information will be collected?</h3><ul><li>Your age, and whether ChatGPT is one of the AI tools you use most.</li><li>A name or label, and your gender selection.</li><li>Optionally, your email address and WhatsApp number.</li><li>Your answers to the knowledge questions, your confidence ratings and your written reflections.</li><li>The link to your shared ChatGPT chat, which lets the research team read that conversation.</li><li>The times you started and finished, and how long you used the timer.</li><li>Whether you agreed to be contacted for follow-up questions.</li></ul>
+<h3>What about my ChatGPT account and chat?</h3><p>The research team cannot access your ChatGPT account or your other conversations. We only see the one chat that you choose to share with a link. Anyone who has the link can view that chat, and it shows the messages up to the moment you created the link. Your custom instructions are not shared. Please do not delete the chat or the shared link until the research team tells you that you can. Your use of ChatGPT is subject to the provider\u2019s own terms, privacy policy and account settings.</p>
+<h3>How will my data be stored and protected?</h3><p>Your responses are kept in your browser while you take part. When you press Submit they are sent to ${STORAGE} and are seen only by the research team. They will be kept ${f(STUDY.retention)}. Identifiable information, including your name and contact details, will not appear in any research publication. You have the right to ask to see, correct or delete your data.</p><p>If you would rather not submit online, you can download a copy of your answers on the last page and email it to ${f(STUDY.contact)} instead.</p>
+<h3>Can I withdraw my data?</h3><p>Yes. After you have submitted, contact the research team at ${f(STUDY.contact)}, tell us the name or label you used and roughly when you took part, and we will delete your data.</p>
+<h3>Follow-up contact</h3><p>At the end we will ask whether you are willing to be contacted later with follow-up questions. This is optional. If you say no, we will not contact you about follow-up questions.</p>
+<h3>Questions or concerns</h3><p>If you have any questions or concerns about this study, please contact ${f(STUDY.contact)}.</p>`;}
+function info(){view(`<div class="eyebrow">Information</div><h2>Participant information sheet</h2><p class="fine">Please read this sheet carefully before you decide whether to take part. You can print or save a copy.</p><div class="sheet">${infoBody()}</div><div class="actions"><button class="btn ghost" onclick="setStage(0)">← Back</button><button class="btn ghost" onclick="printSheet()">Print or save a copy</button><button class="btn primary" onclick="setStage(2)">Continue to consent →</button></div>`);}
+function printSheet(){const h=`<!doctype html><html><head><meta charset="utf-8"><title>Participant information sheet</title><style>body{font:13px/1.55 Arial,sans-serif;color:#222;margin:28px;max-width:760px}h1{font-size:22px}h3{font-size:14px;margin:20px 0 6px}ul,ol{padding-left:20px}mark{background:#ffe9a8}</style></head><body><h1>Participant information sheet</h1><p><b>Reproductive Anatomy Learning Study</b></p>${infoBody()}</body></html>`,w=window.open('','_blank');if(!w)return;w.document.open();w.document.write(h);w.document.close();setTimeout(()=>{w.focus();w.print();},400);}
+
+function setup(){view(`<div class="eyebrow">Step 1</div><h2>Participant details</h2><label class="field" for="pname">Name or label</label><input id="pname" type="text" maxlength="100" autocomplete="off" placeholder="Name or label" value="${esc(data.name||'')}"><div class="field" id="gl">Gender</div><div class="seg s3" role="radiogroup" aria-labelledby="gl">${['Male','Female','Prefer not to say'].map(g=>`<label><input type="radio" name="g" value="${g}" ${data.gender===g?'checked':''}><span>${g}</span></label>`).join('')}</div><div id="mpick" hidden><div class="field" id="ml">Which reproductive system would you like to explore?</div><div class="seg" role="radiogroup" aria-labelledby="ml">${[['female','Female reproductive system'],['male','Male reproductive system']].map(([v,t])=>`<label><input type="radio" name="m" value="${v}" ${data.gender==='Prefer not to say'&&pathway===v?'checked':''}><span>${t}</span></label>`).join('')}</div></div><div class="assign" id="assign"></div><p class="fine" style="margin-top:14px">Your answer helps us choose your learning module. If you select Male you will explore the female reproductive system, and if you select Female you will explore the male reproductive system.</p><h3>Contact details (optional)</h3><p class="fine" style="margin-top:0">You can leave these blank. If you add them, only the research team will see them and they will never appear in publications. At the end you can choose whether you are happy to be contacted later.</p><label class="field" for="pemail">Email address</label><input id="pemail" type="email" maxlength="200" autocomplete="email" inputmode="email" placeholder="name@example.com" value="${esc(data.email||'')}"><div class="hint" id="emailhint"></div><label class="field" for="pwa">WhatsApp number</label><input id="pwa" type="tel" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="+46 70 123 45 67" value="${esc(data.whatsapp||'')}"><div class="hint" id="wahint"></div>${acts('setStage(2)','Continue','saveSetup()',true)}`);
+const chk=()=>{const n=$('pname').value.trim(),em=$('pemail').value.trim(),wa=$('pwa').value.trim(),g=document.querySelector('input[name=g]:checked');
+const emOk=!em||EMAIL_RE.test(em),waOk=!wa||waValid(wa);
+$('emailhint').textContent=emOk?'':'Please enter a valid email address, or leave it blank.';$('emailhint').className='hint'+(emOk?'':' bad');
+$('wahint').textContent=waOk?'Include your country code, for example +46 or +41.':'Please enter a valid number with your country code, or leave it blank.';$('wahint').className='hint'+(waOk?'':' bad');
+const pn=!!g&&g.value==='Prefer not to say',m=document.querySelector('input[name=m]:checked');$('mpick').hidden=!pn;const mod=!g?'':g.value==='Male'?'female':g.value==='Female'?'male':(m?m.value:'');$('next').disabled=!(n&&emOk&&waOk&&g&&mod);$('assign').innerHTML='<b>Assigned module</b>'+(mod?(mod==='female'?'Female':'Male')+' reproductive system':(g?'Choose a reproductive system above':'Select your gender to see your module'));};
+['pname','pemail','pwa'].forEach(id=>$(id).oninput=chk);app.querySelectorAll('input[name=g],input[name=m]').forEach(e=>e.onchange=chk);chk();}
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function waValid(v){const d=v.replace(/\D/g,'');return /^[+0-9\s().-]+$/.test(v)&&d.length>=7&&d.length<=15;}
+function saveSetup(){const name=$('pname').value.trim(),email=$('pemail').value.trim(),wa=$('pwa').value.trim(),g=document.querySelector('input[name=g]:checked');if(!name||!g||(email&&!EMAIL_RE.test(email))||(wa&&!waValid(wa)))return;const gender=g.value;data.name=name;data.email=email;data.whatsapp=wa;data.gender=gender;const mm=document.querySelector('input[name=m]:checked');pathway=gender==='Male'?'female':gender==='Female'?'male':(mm?mm.value:'');if(!pathway)return;data.module=pathway==='female'?'Female reproductive system':'Male reproductive system';data.startedAt=new Date().toISOString();setStage(4);}
+
+function consent(){const done=Array.isArray(data.consentTicks)?data.consentTicks:[];
+view(`<div class="eyebrow">Before you begin</div><h2>Participation information</h2><p>You will answer questions about reproductive anatomy, use your personal ChatGPT account for a short learning activity, share a link to that chat with the research team, and then answer another set of questions and reflect on the experience.</p><div class="notice"><b>Data and privacy</b><br>Your responses are kept in this browser while you take part. When you press Submit on the last page they are sent to the research team\u2019s online database, so you do not need to download or email anything. Your ChatGPT account stays private: the team only sees the chat you choose to share with a link.</div><p class="fine">These statements refer to the participant information sheet. <a href="#" onclick="setStage(1);return false">Read it again</a>.</p><h3>Participant\u2019s declaration</h3><p class="fine">Please tick every statement to confirm that you agree.</p>${CONSENT.map((t,i)=>`<label class="check" style="margin:8px 0"><input type="checkbox" class="cc" ${data.consent||done[i]?'checked':''}><i></i><span>${esc(t)}</span></label>`).join('')}${acts('setStage(1)','Continue','acceptConsent()',!data.consent)}`);
+const all=()=>[...document.querySelectorAll('.cc')].every(c=>c.checked);
+document.querySelectorAll('.cc').forEach(c=>c.onchange=()=>{data.consentTicks=[...document.querySelectorAll('.cc')].map(x=>x.checked);$('next').disabled=!all();});}
+function acceptConsent(){if(![...document.querySelectorAll('.cc')].every(c=>c.checked))return;data.consent=true;data.consentAt=new Date().toISOString();data.consentVersion=CONSENT_VERSION;setStage(3);}
+
+/* Quiz runner: one item per screen */
+const mcItems=key=>bank[pathway][key].map((q,i)=>({k:'mc',q:q[0],o:[2,0,3,1].map(x=>(x+i)%4).map(j=>[j,q[1][j]]),get:()=>data[key+'Answers']?.[i],set:v=>{(data[key+'Answers']??=[])[i]=v;}}));
+const confItems=()=>confidenceItems.map((s,i)=>({k:'sc',sec:i?'':'How would you rate your current knowledge?',q:s,labels:['Strongly disagree','Disagree','Neither agree nor disagree','Agree','Strongly agree'],get:()=>data.confidence?.[i],set:v=>{(data.confidence??=[])[i]=v;}}));
+function quiz(c){Q=c;const n=c.items.length,min=c.intro?-1:0;if(qi<min)qi=min;
+if(qi<0){view(`<div class="eyebrow">${c.eyebrow}</div>${c.intro}${acts('qNav(-1)','Start','qNav(1)')}`);return;}
+const it=c.items[qi],cur=it.get(),ok=cur!==undefined&&String(cur).trim()!=='';let body='';
+if(it.k==='mc')body=`<div class="opts" role="radiogroup">${it.o.map(([j,t],k)=>`<label class="opt"><input type="radio" name="a" value="${j}" ${cur===j?'checked':''}><b>${'ABCD'[k]}</b><span>${esc(t)}</span></label>`).join('')}</div>`;
+else if(it.k==='sc')body=`<div class="scale" role="radiogroup">${it.labels.map((t,j)=>`<label class="key"><input type="radio" name="a" value="${j+1}" ${cur===j+1?'checked':''}><b>${j+1}</b><span>${t}</span></label>`).join('')}</div>`;
+else body=`<textarea id="ta" aria-label="Your answer (optional)" placeholder="Write your answer here.">${esc(cur)}</textarea>`;
+view(`<div class="qhead"><span class="eyebrow">${c.eyebrow}</span><span class="count">${qi+1} / ${n}</span></div><div class="qdots">${c.items.map((x,i)=>`<i class="${i<qi?'on':i===qi?'now':''}"></i>`).join('')}</div>${it.sec?`<div class="sec">${it.sec}</div>`:''}<h2 class="q">${esc(it.q)}</h2>${body}${acts('qNav(-1)',qi===n-1?c.doneLabel:'Next','qNav(1)',!ok)}`);
+app.querySelectorAll('input[type=radio]').forEach(e=>e.onchange=()=>{it.set(Number(e.value));$('next').disabled=false;save();});
+const ta=$('ta');if(ta){ta.oninput=()=>{it.set(ta.value);$('next').disabled=!ta.value.trim();};}}
+function qNav(d){const n=Q.items.length,min=Q.intro?-1:0;
+if(d<0){if(qi>min){qi--;quiz(Q);}else Q.back();return;}
+if(qi<n-1){qi++;quiz(Q);window.scrollTo(0,0);}else Q.done();}
+function score(key,a){return a.reduce((s,v,i)=>s+(v===bank[pathway][key][i][2]?1:0),0);}
+
+function pretest(){quiz({eyebrow:'Pre-test',doneLabel:'Submit pre-test',items:[...mcItems('pre'),...confItems()],back:()=>setStage(3),done:submitPretest,
+intro:`<h2>Before you start</h2><div class="notice warn"><b>Important:</b> Complete this pre-test using only what you already know. Do not use ChatGPT, other AI tools, the internet, notes, books, or help from another person. Choose the answer that you believe is correct.</div><p>There are six knowledge questions, followed by three confidence statements. Answer all of them before moving on.</p>`});}
+function submitPretest(){const a=data.preAnswers,c=data.confidence;if(!a||!c||a.length<6||a.includes(undefined)||c.length<3||c.includes(undefined))return;data.preScore=score('pre',a);data.confidenceAverage=c.reduce((x,y)=>x+y,0)/3;data.eligible=data.preScore<=3&&data.confidenceAverage<=3;data.preCompletedAt=new Date().toISOString();setStage(5);}
+
+function eligibility(){const e=data.eligible,s=data.preScore<=3,c=data.confidenceAverage<=3;
+const row=(k,v,r,ok)=>`<div class="spec"><div><div class="k">${k}</div><div class="rule">${r}</div></div><div class="v">${v}</div><div class="st"><span class="lamp ${ok?'on':''}"></span>${ok?'Criterion met':'Not met'}</div></div>`;
+view(`<div class="eyebrow">Participation criteria</div><h2>${e?'You meet the participation criteria':'Thank you for your time'}</h2><div style="margin-top:20px">${row('Pre-test score',data.preScore+'/6','Required: 3 or fewer',s)}${row('Average confidence',data.confidenceAverage.toFixed(2)+'/5','Required: 3 or lower',c)}</div><div class="verdict"><span class="lamp ${e?'on':''}"></span><div>${e?'Your responses meet the criteria for continuing. You may proceed to the learning activity.':'Based on your responses, you do not meet the criteria for the next part of this activity. Thank you for your time. You do not need to continue.'}</div></div><p class="fine">The criteria require both a knowledge score of 3 or fewer out of 6 and an average confidence rating of 3 or lower out of 5.</p><div class="actions"><span></span>${e?'<button class="btn primary" onclick="setStage(6)">Continue to learning activity →</button>':'<button class="btn primary" onclick="setStage(10)">Finish →</button>'}</div>`);}
+
+const INFO=`<div class="crit" role="note"><div class="crit-h"><i></i>Required for this study</div><div class="crit-t">Use your own ChatGPT account, in a new tab, and keep the chat so you can share it next.</div><div class="flow"><div class="fs"><div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span class="fn">1</span></div><div><b>Your own account</b><span>Sign in to your personal ChatGPT account.</span></div></div><div class="fs"><div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M7 6V4h6v2"/></svg><span class="fn">2</span></div><div><b>A new tab</b><span>Open ChatGPT in a new browser tab. Keep this page open.</span></div></div><div class="fs"><div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="fn">3</span></div><div><b>A regular chat</b><span>Start a new, regular chat. Not Temporary Chat.</span></div></div><div class="fs"><div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span class="fn">4</span></div><div><b>Save the log</b><span>Keep the chat in your history. You will share a link to it on the next page.</span></div></div></div><div class="nots"><span><em>✕</em>No shared or borrowed accounts</span><span><em>✕</em>No Temporary Chat</span><span><em>✕</em>No deleting the chat</span><span><em>✕</em>No other AI tools</span></div></div>`;
+function exploration(){const topics=pathway==='female'?['Basic female reproductive anatomy','Vulva vs. vagina','Vaginal discharge and its functions','The menstrual cycle']:['Basic male reproductive anatomy','Penis vs. scrotum','Semen vs. pre-ejaculate','Sperm production and ejaculation'];
+view(`<div class="eyebrow">Learning activity</div><h2>Explore the topic with ChatGPT</h2>${INFO}<div class="assign"><b>Your assigned topic</b>${esc(data.module)}</div><div class="key-instruction">Use your personal ChatGPT account to ask questions, clarify concepts, and explore anything you feel would help you understand the subject.</div><h3>Topics to explore</h3><div class="topics">${topics.map((t,i)=>`<div class="topic"><i>0${i+1}</i>${t}</div>`).join('')}</div><h3>Instructions</h3><ol class="how"><li>Open ChatGPT in a new browser tab and sign in to your personal account.</li><li>Start a new, regular chat. Do not use Temporary Chat.</li><li>Explore the topics above and ask any questions that you feel would help you understand them.</li><li>Do not type personal details about yourself (such as your full name, address or health problems) into the chat. The research team will be able to read it.</li><li>Use the time to learn naturally. You do not need to follow a script or ask every possible question.</li><li>Make sure the chat is saved in your history. On the next page you will share a link to it with the research team.</li><li>Return to this page when you are finished.</li></ol><div class="notice warn"><b>Time:</b> Spend approximately 10–15 minutes exploring. The timer below is a guide. Please do not use other AI tools or external learning resources for this activity.</div><div class="timerbox"><div class="ring"><svg width="132" height="132" viewBox="0 0 132 132"><circle class="tr" cx="66" cy="66" r="60"/><circle class="pr" id="ringp" cx="66" cy="66" r="60" stroke-dasharray="377" stroke-dashoffset="0"/></svg><div class="timer" id="timer">15:00</div></div><div class="tcol"><small>Suggested activity timer</small><div class="trow"><button class="btn soft" id="tbtn" onclick="toggleTimer()">Start timer</button><button class="btn ghost" onclick="resetTimer()">Reset</button></div></div></div><h3>Before you continue, confirm</h3>${['I used my own personal ChatGPT account.','I opened ChatGPT in a new tab and used a regular chat, not Temporary Chat.','I kept the chat in my history so I can share a link to it.'].map(t=>`<label class="check" style="margin:8px 0"><input type="checkbox" class="cf" ${data.chatConfirmed?'checked':''}><i></i><span>${t}</span></label>`).join('')}<div class="actions"><button class="btn ghost" onclick="setStage(5)">← Back</button><button class="btn primary" id="fin" onclick="finishExploration()" ${data.chatConfirmed?'':'disabled'}>I have finished exploring →</button></div>`);updateTimer();const cf=()=>{$('fin').disabled=![...document.querySelectorAll('.cf')].every(c=>c.checked);};document.querySelectorAll('.cf').forEach(c=>c.onchange=cf);}
+function toggleTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;updateTimer();return;}if(secondsLeft<=0)return;timerInt=setInterval(()=>{if(secondsLeft>0){secondsLeft--;save();}if(secondsLeft<=0){clearInterval(timerInt);timerInt=null;}updateTimer();},1000);updateTimer();}
+function resetTimer(){clearInterval(timerInt);timerInt=null;secondsLeft=900;updateTimer();}
+function updateTimer(){const el=$('timer');if(!el)return;el.textContent=String(Math.floor(secondsLeft/60)).padStart(2,'0')+':'+String(secondsLeft%60).padStart(2,'0');$('ringp').style.strokeDashoffset=377*(1-secondsLeft/900);$('tbtn').textContent=timerInt?'Pause':secondsLeft<=0?'Time elapsed':secondsLeft<900?'Resume':'Start timer';$('tbtn').disabled=secondsLeft<=0;}
+function finishExploration(){if(![...document.querySelectorAll('.cf')].every(c=>c.checked))return;data.chatConfirmed=true;clearInterval(timerInt);timerInt=null;data.explorationCompleted=true;data.explorationDurationSeconds=900-secondsLeft;data.explorationFinishedAt=new Date().toISOString();setStage(7);}
+
+const SHARE_RE=/^https:\/\/(chatgpt\.com|chat\.openai\.com)\/share\/\S+$/i;
+function sharechat(){view(`<div class="eyebrow">Share your chat</div><h2>Share the link to your ChatGPT chat</h2><p class="lead">Please send the research team the chat you just had with ChatGPT.</p><ol class="how"><li>Go back to your ChatGPT tab. <b>Finish your conversation first.</b> Messages sent after you create the link will not be shared.</li><li>Click the <b>Share</b> icon at the top right of the chat.</li><li>In the \u201cShare link to chat\u201d window, click the blue <b>Share link</b> button, then copy the link.</li><li>Paste the link in the box below.</li></ol><figure class="shot"><a href="share-link-example.png" target="_blank" rel="noopener"><img src="share-link-example.png" alt="ChatGPT window with the Share icon at the top right and the Share link to chat dialog open. The Share icon and the blue Share link button are outlined in orange."></a><figcaption>Example only (a different chat). The two outlined spots are the Share icon (top right) and the Share link button. Your screen may look slightly different. Tap the image to enlarge it.</figcaption></figure><div class="notice"><b>Good to know:</b> anyone who has the link can view the shared chat, but your custom instructions are not shared. If you see an option to make the chat discoverable or searchable, leave it off. To check that your link works, paste it into a private or incognito window.</div><label class="field" for="chatlink">Link to your shared chat</label><input id="chatlink" type="url" inputmode="url" autocomplete="off" placeholder="https://chatgpt.com/share/\u2026" value="${esc(data.chatLink||'')}"><div class="hint" id="linkhint">It should start with https://chatgpt.com/share/</div>${acts('setStage(6)','Continue','saveChatLink()',true)}`);
+const chk=()=>{const v=$('chatlink').value.trim(),ok=SHARE_RE.test(v);$('next').disabled=!ok;$('linkhint').textContent=v&&!ok?'This does not look like a ChatGPT share link. It should start with https://chatgpt.com/share/':'It should start with https://chatgpt.com/share/';$('linkhint').className='hint'+(v&&!ok?' bad':'');};
+$('chatlink').oninput=chk;chk();}
+function saveChatLink(){const v=$('chatlink').value.trim();if(!SHARE_RE.test(v))return;data.chatLink=v;data.chatLinkAt=new Date().toISOString();setStage(8);}
+
+function posttest(){quiz({eyebrow:'Post-test',doneLabel:'Submit post-test',items:mcItems('post'),back:()=>setStage(7),done:submitPosttest,intro:`<h2>Post-test</h2><p>Answer based on your understanding after the learning activity. Choose one answer for each question. There are six questions.</p>`});}
+function submitPosttest(){const a=data.postAnswers;if(!a||a.length<6||a.includes(undefined))return;data.postScore=score('post',a);data.postCompletedAt=new Date().toISOString();setStage(9);}
+
+function reflection(){const sc=(id,q,labels)=>({k:'sc',q,labels,get:()=>data[id],set:v=>{data[id]=v;}}),tx=(id,q)=>({k:'tx',q,get:()=>data[id]||'',set:v=>{data[id]=v;}});
+quiz({eyebrow:'Reflection',doneLabel:'Finish activity',back:()=>setStage(8),done:submitReflection,intro:`<h2>Reflect on the learning activity</h2><p>There are no right or wrong answers. Please describe your experience honestly. Please answer every question before moving on.</p>`,items:[
+sc('comfort','How comfortable did you feel asking ChatGPT questions about this topic?',['Not at all','Slightly','Moderately','Very','Extremely']),
+tx('hesitation','Did you hesitate before asking any question, or choose not to ask something? If yes, what influenced that?'),
+tx('phrasing','Did you change the way you phrased your questions during the conversation? If so, how or why?'),
+sc('judgement','To what extent did you feel ChatGPT might judge you, misunderstand you, or form an impression of you?',['Not at all','A little','Somewhat','Quite a bit','A great deal']),
+tx('account','Did using your personal ChatGPT account, or knowing the conversation could remain in your chat history, affect what you asked or how you asked it?'),
+tx('perception','Did your perception of ChatGPT change during the interaction? If yes, what changed?')]});}
+function submitReflection(){['hesitation','phrasing','account','perception'].forEach(id=>data[id]=(data[id]||'').trim());if(!data.comfort||!data.judgement||!data.hesitation||!data.phrasing||!data.account||!data.perception)return;data.finishedAt=new Date().toISOString();setStage(10);}
+
+function complete(){if(data.submitted){done();return;}
+const inel=!data.eligible;
+view(`<div class="eyebrow">${inel?'Activity ended':'Activity complete'}</div><h2>Thank you for participating</h2><p>${inel?'Based on your answers you do not need to complete the learning activity. We are grateful for your time.':'You have completed all parts of the activity. We are very grateful for your time and your honest answers.'}</p>${!inel?`<div class="figs"><div class="fig"><b>${data.preScore}/6</b><span>Pre-test score</span></div><div class="fig"><b>${data.postScore}/6</b><span>Post-test score</span></div></div>`:''}<h3>One last question</h3><p>Would you be willing to be contacted later by the research team with follow-up questions?</p><div class="seg" role="radiogroup" aria-label="Willing to be contacted for follow-up questions">${[['yes','Yes, I am willing'],['no','No, thank you']].map(([v,t])=>`<label><input type="radio" name="fu" value="${v}" ${data.followUp===v?'checked':''}><span>${t}</span></label>`).join('')}</div><p class="fine" style="margin-top:12px">Your answer does not affect your participation. If you say no, the research team will not contact you about follow-up questions.</p><div id="contactBox"></div><div class="notice warn" id="submsg" hidden></div><button class="btn primary big-submit" id="submitBtn" onclick="submitStudy()" disabled>SUBMIT MY RESPONSES</button><p class="fine">Pressing Submit sends your responses to the research team. Please keep this page open until you see the confirmation.</p><p class="fine" style="margin-top:22px">Prefer not to submit online? <button class="linkbtn" onclick="printReport()">Download a copy of your answers</button>${RESEARCHER_CONTACT?` and email it to <a href="mailto:${esc(RESEARCHER_CONTACT)}?subject=Study%20responses">${esc(RESEARCHER_CONTACT)}</a>`:' and send it to the research team'}.</p>`);
+app.querySelectorAll('input[name=fu]').forEach(e=>e.onchange=()=>{data.followUp=e.value;save();contactBox();});contactBox();}
+const hasContact=()=>!!(data.email||data.whatsapp);
+const needsContact=()=>data.followUp==='yes'&&!hasContact();
+function contactOk(){if(!needsContact())return true;const e=data.cEmail||'',w=data.cWa||'',eo=e&&EMAIL_RE.test(e),wo=w&&waValid(w);return !!(eo||wo)&&(!e||!!eo)&&(!w||!!wo);}
+function updateSubmit(){if(needsContact()){const e=data.cEmail||'',w=data.cWa||'';$('cemhint').textContent=e&&!EMAIL_RE.test(e)?'Please enter a valid email address.':'';$('cemhint').className='hint'+(e&&!EMAIL_RE.test(e)?' bad':'');$('cwahint').textContent=w&&!waValid(w)?'Please enter a valid number with your country code.':'Include your country code, for example +46 or +41.';$('cwahint').className='hint'+(w&&!waValid(w)?' bad':'');}
+$('submitBtn').disabled=!(data.followUp&&contactOk());}
+function contactBox(){const b=$('contactBox');if(!b)return;
+if(needsContact()){b.innerHTML=`<div class="notice"><b>How can we reach you?</b><br>You said you are willing to be contacted, but you did not add contact details earlier. Please add at least one below.</div><label class="field" for="cemail">Email address</label><input id="cemail" type="email" maxlength="200" autocomplete="email" inputmode="email" placeholder="name@example.com" value="${esc(data.cEmail||'')}"><div class="hint" id="cemhint"></div><label class="field" for="cwa">WhatsApp number</label><input id="cwa" type="tel" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="+46 70 123 45 67" value="${esc(data.cWa||'')}"><div class="hint" id="cwahint"></div>`;
+['cemail','cwa'].forEach(id=>$(id).oninput=()=>{data.cEmail=$('cemail').value.trim();data.cWa=$('cwa').value.trim();updateSubmit();});}
+else b.innerHTML=data.followUp==='yes'?'<p class="fine">We will use the contact details you gave earlier.</p>':'';
+updateSubmit();}
+function done(){view(`<div class="eyebrow">Submitted</div><h2>Your responses have been submitted</h2><p class="lead">Thank you for taking part. You can now close this page.</p><p>${data.followUp==='yes'?'You said you are happy to be contacted for follow-up questions, so the research team may get in touch with you.':'You said you would prefer not to be contacted again, so the research team will not contact you about follow-up questions.'}</p>${RESEARCHER_CONTACT?`<p class="fine">Questions, or want to withdraw your data? Contact ${esc(RESEARCHER_CONTACT)}.</p>`:''}<p class="fine">Optional: you can download a copy of your answers for your own records.</p><div class="actions"><span></span><button class="btn ghost" onclick="printReport()">Download a copy (PDF)</button></div>`);}
+function uuid(){if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();const b=crypto.getRandomValues(new Uint8Array(16));b[6]=b[6]&15|64;b[8]=b[8]&63|128;const h=[...b].map(x=>x.toString(16).padStart(2,'0')).join('');return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;}
+function answerRows(key){const a=data[key+'Answers'];if(!a)return undefined;return bank[pathway][key].map((q,i)=>({q:i+1,question:q[0],selected:q[1][a[i]],correct:a[i]===q[2]}));}
+function buildRow(){if(!data.id)data.id=uuid();return{id:data.id,name:data.name,email:data.email||undefined,whatsapp:data.whatsapp||undefined,gender:data.gender,module:data.module,age:data.age,chatgpt_primary:data.chatgptPrimary==='yes',consent:data.consent===true,consent_at:data.consentAt,consent_version:data.consentVersion,started_at:data.startedAt,finished_at:data.finishedAt||new Date().toISOString(),eligible:data.eligible,pre_score:data.preScore,confidence_avg:data.confidenceAverage,confidence:data.confidence,pre_answers:answerRows('pre'),exploration_seconds:data.explorationDurationSeconds,chat_link:data.chatLink,post_score:data.postScore,post_answers:answerRows('post'),comfort:data.comfort,judgement:data.judgement,hesitation:data.hesitation,phrasing:data.phrasing,account_reflection:data.account,perception:data.perception,followup_ok:data.followUp==='yes'};}
+const notConfigured=()=>BACKEND==='google'?GOOGLE_SCRIPT_URL.includes('YOUR-DEPLOYMENT'):(SUPABASE_URL.includes('YOUR-PROJECT')||SUPABASE_KEY.startsWith('YOUR-'));
+async function sendRow(row,signal){
+if(BACKEND==='google'){const res=await fetch(GOOGLE_SCRIPT_URL,{method:'POST',signal,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(row)});let j=null;try{j=await res.json();}catch(e){}
+return{ok:!!(j&&j.ok),status:res.status,detail:j&&j.error||''};}
+const res=await fetch(SUPABASE_URL+'/rest/v1/submissions',{method:'POST',signal,headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Prefer':'return=minimal'},body:JSON.stringify(row)});
+let d='';if(!res.ok&&res.status!==409){try{d=(await res.text()).slice(0,200);}catch(e){}}
+return{ok:res.ok||res.status===409,status:res.status,detail:d};}
+async function submitStudy(){if(!data.followUp||!contactOk())return;const btn=$('submitBtn'),msg=$('submsg');msg.hidden=true;btn.disabled=true;btn.textContent='Submitting\u2026';
+const fail=t=>{msg.hidden=false;msg.innerHTML=`<b>Your responses have not been sent yet.</b><br>${t}<br><br><button class="btn ghost" onclick="printReport()">Download a backup copy (PDF)</button>${RESEARCHER_CONTACT?`<br><span class="fine">If this keeps happening, contact ${esc(RESEARCHER_CONTACT)} and send the backup copy.</span>`:''}`;btn.disabled=false;btn.textContent='TRY AGAIN';};
+if(notConfigured()){fail('This study page has not been connected to its data store yet. Please tell the research team.');btn.textContent='SUBMIT MY RESPONSES';return;}
+if(needsContact()){data.email=data.cEmail||'';data.whatsapp=data.cWa||'';}
+try{const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),25000);
+const r=await sendRow(buildRow(),ctl.signal);clearTimeout(t);
+if(r.ok){data.submitted=true;dirty=false;try{localStorage.removeItem('reproStudyDraft');}catch(e){}done();window.scrollTo(0,0);}
+else{console.error('Submit failed',r.status,r.detail);fail('The server did not accept the submission'+(r.status?' (error '+r.status+')':'')+'. Please try again.');}}
+catch(e){console.error(e);fail('We could not reach the server. Please check your internet connection and try again.');}}
+
+function printReport(){const r=buildReport(),w=window.open('','_blank');
+if(w){w.document.open();w.document.write(r);w.document.close();setTimeout(()=>{w.focus();w.print();},500);return;}
+const f=document.createElement('iframe');f.style.cssText='position:fixed;width:0;height:0;border:0';document.body.appendChild(f);f.onload=()=>{f.contentWindow.focus();f.contentWindow.print();};f.srcdoc=r;}
+function buildReport(){const answerBlock=(key,label)=>{if(!data[key+'Answers'])return '';const qs=bank[pathway][key];return `<h2>${label}</h2>${qs.map((q,i)=>`<div class="item"><b>${i+1}. ${esc(q[0])}</b><p>Selected answer: ${esc(q[1][data[key+'Answers'][i]])}</p><p>Correct answer: ${esc(q[1][q[2]])}</p><p>Result: ${data[key+'Answers'][i]===q[2]?'Correct':'Incorrect'}</p></div>`).join('')}`;};const conf=data.confidence?data.confidence.map((v,i)=>`<li>${esc(confidenceItems[i])} <b>${v}/5</b></li>`).join(''):'';const reflectionRows=['hesitation','phrasing','account','perception'].map((id,i)=>`<div class="item"><b>${['Hesitation / omitted questions','Changes in phrasing','Personal account / chat history','Change in perception'][i]}</b><p>${esc(data[id]||'No response')}</p></div>`).join('');return `<!doctype html><html><head><meta charset="utf-8"><title>Participant research report</title><style>body{font:12px/1.5 Arial,sans-serif;color:#222;margin:28px}h1{font-size:23px}h2{font-size:17px;border-bottom:1px solid #bbb;padding-bottom:5px;margin-top:25px}.meta{background:#f2f5f2;padding:12px}.item{border-bottom:1px solid #ddd;padding:8px 0;break-inside:avoid}p{margin:4px 0}.small{color:#555;font-size:11px}@media print{body{margin:16mm}h2{break-after:avoid}}</style></head><body><h1>Reproductive Anatomy Learning Activity<br>Participant Report</h1><p class="small">Generated: ${esc(new Date().toLocaleString())}</p>${RESEARCHER_CONTACT?`<p><b>Please email this report (saved as a PDF) to ${esc(RESEARCHER_CONTACT)}.</b></p>`:''}<div class="meta"><p><b>Participant name:</b> ${esc(data.name)}</p><p><b>Age:</b> ${esc(data.age||'')}</p><p><b>ChatGPT is one of my most used AI tools:</b> ${data.chatgptPrimary==='yes'?'Yes':data.chatgptPrimary==='no'?'No':'Not answered'}</p><p><b>Email:</b> ${esc(data.email||(data.followUp==='yes'&&data.cEmail)||'Not provided')}</p><p><b>WhatsApp:</b> ${esc(data.whatsapp||(data.followUp==='yes'&&data.cWa)||'Not provided')}</p><p><b>Shared chat link:</b> ${esc(data.chatLink||'Not provided')}</p><p><b>Willing to be contacted for follow-up:</b> ${data.followUp==='yes'?'Yes':data.followUp==='no'?'No':'Not answered'}</p><p><b>Gender selected:</b> ${esc(data.gender)}</p><p><b>Assigned module:</b> ${esc(data.module)}</p><p><b>Consent confirmed:</b> ${data.consent?'Yes':'No'}</p><p><b>Eligibility:</b> ${data.eligible?'Eligible':'Not eligible'}</p><p><b>Activity started:</b> ${esc(data.startedAt||'')}</p><p><b>Activity completed:</b> ${esc(data.finishedAt||data.preCompletedAt||'')}</p></div>${answerBlock('pre','Pre-test responses')}<h2>Confidence assessment</h2><ol>${conf}</ol><p><b>Average confidence:</b> ${data.confidenceAverage!==undefined?data.confidenceAverage.toFixed(2)+'/5':'Not recorded'}</p><p><b>Pre-test score:</b> ${data.preScore!==undefined?data.preScore+'/6':'Not recorded'}</p><p><b>Eligibility rule:</b> Knowledge score ≤ 3/6 AND confidence average ≤ 3/5.</p><p><b>Eligibility outcome:</b> ${data.eligible?'Met both criteria':'Did not meet both criteria'}</p><h2>Learning activity</h2><p><b>Exploration completed:</b> ${data.explorationCompleted?'Yes':'No / not applicable'}</p><p><b>Time on timer:</b> ${data.explorationDurationSeconds!==undefined?Math.floor(data.explorationDurationSeconds/60)+' min '+data.explorationDurationSeconds%60+' sec':'Not recorded'}</p>${answerBlock('post','Post-test responses')}<p><b>Post-test score:</b> ${data.postScore!==undefined?data.postScore+'/6':'Not recorded / not applicable'}</p><h2>Reflection responses</h2><p><b>Comfort asking questions:</b> ${data.comfort?data.comfort+'/5':'Not recorded'}</p><p><b>Perceived possibility of judgement / misunderstanding:</b> ${data.judgement?data.judgement+'/5':'Not recorded'}</p>${reflectionRows}<h2>Session summary</h2><p><b>Pre-test:</b> ${data.preScore??'—'}/6. <b>Confidence average:</b> ${data.confidenceAverage!==undefined?data.confidenceAverage.toFixed(2):'—'}/5. <b>Eligibility:</b> ${data.eligible?'Eligible':'Not eligible'}.</p><p><b>Post-test:</b> ${data.postScore!==undefined?data.postScore+'/6':'Not completed'}.</p><p class="small">This copy was generated on the participant\u2019s device from the study page.</p></body></html>`;}
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='Your responses have not been submitted yet. Are you sure you want to leave?';}});
+render();
+</script></body></html>
